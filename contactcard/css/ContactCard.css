@@ -1,0 +1,29 @@
+.cardcontainer{
+    width: fit-content;
+    height: 30%;
+    /* border-radius: 20px; */
+    border: 1px solid black;
+    box-shadow: 5px 5px 8px gray;
+}
+.card-name{
+    margin: 0px;
+    padding: 5px;
+    background-color: rgb(2, 37, 77);
+    font-weight: bold;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: large;
+}
+.opportunityname{
+    background-color: transparent;
+    border: none;
+    padding: 3rem;
+    font-size: medium;
+    font-weight: 600;
+    color: rgb(2, 37, 77);
+}
+.contactname{
+    background-color: rgb(141, 178, 247);
+    height: 20%;
+}
+

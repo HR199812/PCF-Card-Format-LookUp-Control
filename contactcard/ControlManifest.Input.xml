@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="ContactInfo" constructor="contactcard" version="0.0.1" display-name-key="contactcard" description-key="contactcard description" control-type="standard" >
+
+    <external-service-usage enabled="false">
+    </external-service-usage>
+
+    <property name="contactCardData" display-name-key="contactCardProperty_Display_Key" description-key="contactCardProperty_Desc_Key" of-type="Lookup.Simple" usage="bound" required="true" />
+
+    <resources>
+      <code path="index.ts" order="1"/>
+      <css path="css/ContactCard.css" />
+    </resources>
+    <feature-usage>
+      <uses-feature name="Utility" required="true" />
+    </feature-usage>
+  </control>
+</manifest>
