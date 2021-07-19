@@ -6,7 +6,8 @@ export class contactcard implements ComponentFramework.StandardControl<IInputs, 
 	private _cardContainer: HTMLDivElement;
 	private _cardInputContainer: HTMLDivElement;
 	private _inputCardLabel: HTMLParagraphElement;
-	private _textInput: HTMLInputElement
+	private _textInput: HTMLInputElement;
+	private _editButton: HTMLButtonElement;
 	private _context: ComponentFramework.Context<IInputs>;
 
 	constructor() {
@@ -30,13 +31,20 @@ export class contactcard implements ComponentFramework.StandardControl<IInputs, 
 
 		this._cardInputContainer = document.createElement("div");
 
+		this._editButton = document.createElement("button");
+		this._editButton.setAttribute("type", "button");
+		this._editButton.setAttribute("value", "edit");
+		this._editButton.setAttribute("class", "edit-button");
+		this._editButton.innerHTML = "<span class='fas fa-pen'></span>";
 
+		this._editButton.addEventListener("click", this.editOpportunity);
 
 		this._inputCardLabel = document.createElement("p");
 		this._inputCardLabel.setAttribute("class", "card-name");
 
 		this._inputCardLabel.innerHTML = `Contact`;
 
+		this._inputCardLabel.appendChild(this._editButton);
 
 		this._textInput = document.createElement("input");
 		this._textInput.setAttribute("type", "text");
@@ -55,6 +63,10 @@ export class contactcard implements ComponentFramework.StandardControl<IInputs, 
 		this._cardContainer.appendChild(this._cardInputContainer);
 
 		container.appendChild(this._cardContainer);
+	}
+
+	public editOpportunity(event: Event): void {
+		alert('Hi');
 	}
 
 

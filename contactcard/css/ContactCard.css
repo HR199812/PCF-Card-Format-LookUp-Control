@@ -1,3 +1,6 @@
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css";
+
+
 .cardcontainer{
     width: fit-content;
     height: 30%;
@@ -26,4 +29,15 @@
     background-color: rgb(141, 178, 247);
     height: 20%;
 }
+.edit-button{
+    float: right;
+    background-color: transparent;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 100%;
+    color: white;
+}
+
 
