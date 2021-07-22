@@ -2,7 +2,8 @@ import { IInputs, IOutputs } from "./generated/ManifestTypes";
 
 export class contactcard implements ComponentFramework.StandardControl<IInputs, IOutputs> {
 
-	private _value: ComponentFramework.LookupValue;
+	private _lookupObject : any;
+	private _value: string;
 	private _cardContainer: HTMLDivElement;
 	private _cardInputContainer: HTMLDivElement;
 	private _inputCardLabel: HTMLParagraphElement;
@@ -51,12 +52,15 @@ export class contactcard implements ComponentFramework.StandardControl<IInputs, 
 		this._textInput.setAttribute("class", "contactname");
 		this._textInput.readOnly = true;
 
+		this._lookupObject = context.parameters.contactCardData.raw!;
+		this._value = this._lookupObject[0].Name;
+
 		this._textInput.setAttribute("value", context.parameters.contactCardData.formatted ? context.parameters.contactCardData.formatted : "0");
 		this._textInput.innerText = context.parameters.contactCardData.formatted ? context.parameters.contactCardData.formatted : "0";
 
 		console.log(this._value);
 
-		this._textInput.value = `${this._value}`;
+		this._textInput.value = this._value;
 
 		this._cardContainer.appendChild(this._inputCardLabel);
 		this._cardInputContainer.appendChild(this._textInput);
@@ -75,7 +79,10 @@ export class contactcard implements ComponentFramework.StandardControl<IInputs, 
 	 * @param context The entire property bag available to control via Context Object; It contains values as set up by the customizer mapped to names defined in the manifest, as well as utility functions
 	 */
 	public updateView(context: ComponentFramework.Context<IInputs>): void {
+		this._lookupObject = context.parameters.contactCardData.raw!;
+		this._value = this._lookupObject[0].Name;
 		this._context = context;
+		this._textInput.value = this._value;
 	}
 
 	/**
