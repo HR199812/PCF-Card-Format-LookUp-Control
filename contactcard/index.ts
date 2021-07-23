@@ -3,12 +3,14 @@ import { IInputs, IOutputs } from "./generated/ManifestTypes";
 export class contactcard implements ComponentFramework.StandardControl<IInputs, IOutputs> {
 
 	private _lookupObject : any;
+	private _EntityFormOptions: any;
 	private _value: string;
 	private _cardContainer: HTMLDivElement;
 	private _cardInputContainer: HTMLDivElement;
 	private _inputCardLabel: HTMLParagraphElement;
 	private _textInput: HTMLInputElement;
 	private _editButton: HTMLButtonElement;
+	private _EyeLookupButton: HTMLButtonElement;
 	private _context: ComponentFramework.Context<IInputs>;
 
 	constructor() {
@@ -24,8 +26,12 @@ export class contactcard implements ComponentFramework.StandardControl<IInputs, 
 	 * @param container If a control is marked control-type='standard', it will receive an empty div element within which it can render its content.
 	 */
 	public init(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container: HTMLDivElement): void {
-
+		
 		this._context = context;
+		
+		this._lookupObject = context.parameters.contactCardData.raw!;
+		this._value = this._lookupObject[0].Name;
+
 
 		this._cardContainer = document.createElement("div");
 		this._cardContainer.setAttribute("class", "cardcontainer");
@@ -38,6 +44,12 @@ export class contactcard implements ComponentFramework.StandardControl<IInputs, 
 		this._editButton.setAttribute("class", "edit-button");
 		this._editButton.innerHTML = "<span class='fas fa-pen'></span>";
 
+		this._EyeLookupButton = document.createElement("button");
+		this._EyeLookupButton.setAttribute("type", "button");
+		// this._EyeLookupButton.setAttribute("value", "view");
+		this._EyeLookupButton.setAttribute("class", "eyeview-button");
+		this._EyeLookupButton.innerHTML = "<span class='far fa-eye'></span>";
+
 		this._editButton.addEventListener("click", this.editOpportunity);
 
 		this._inputCardLabel = document.createElement("p");
@@ -46,14 +58,15 @@ export class contactcard implements ComponentFramework.StandardControl<IInputs, 
 		this._inputCardLabel.innerHTML = `Contact`;
 
 		this._inputCardLabel.appendChild(this._editButton);
+		this._inputCardLabel.appendChild(this._EyeLookupButton);
+
 
 		this._textInput = document.createElement("input");
 		this._textInput.setAttribute("type", "text");
 		this._textInput.setAttribute("class", "contactname");
 		this._textInput.readOnly = true;
 
-		this._lookupObject = context.parameters.contactCardData.raw!;
-		this._value = this._lookupObject[0].Name;
+		
 
 		this._textInput.setAttribute("value", context.parameters.contactCardData.formatted ? context.parameters.contactCardData.formatted : "0");
 		this._textInput.innerText = context.parameters.contactCardData.formatted ? context.parameters.contactCardData.formatted : "0";
