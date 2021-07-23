@@ -39,5 +39,15 @@
     border-radius: 100%;
     color: white;
 }
-
+.eyeview-button{
+    margin-right: 1rem;
+    float: right;
+    background-color: transparent;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 100%;
+    color: white;
+}
 
