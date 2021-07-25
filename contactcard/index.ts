@@ -43,6 +43,7 @@ export class contactcard implements ComponentFramework.StandardControl<IInputs, 
 		this._editButton.setAttribute("value", "edit");
 		this._editButton.setAttribute("class", "edit-button");
 		this._editButton.innerHTML = "<span class='fas fa-pen'></span>";
+		this._editButton.addEventListener('click', this.editOpportunity);
 
 		this._EyeLookupButton = document.createElement("button");
 		this._EyeLookupButton.setAttribute("type", "button");
@@ -50,7 +51,21 @@ export class contactcard implements ComponentFramework.StandardControl<IInputs, 
 		this._EyeLookupButton.setAttribute("class", "eyeview-button");
 		this._EyeLookupButton.innerHTML = "<span class='far fa-eye'></span>";
 
-		this._editButton.addEventListener("click", this.editOpportunity);
+		this._EntityFormOptions = {};
+		this._EntityFormOptions["entityName"] = this._lookupObject[0].entityType;
+		this._EntityFormOptions["entityId"] = this._lookupObject[0].id;
+		// this._EntityFormOptions["openInNewWindow"] = true;
+		this._EntityFormOptions["height"] = 100;
+		this._EyeLookupButton.addEventListener("click", (e)=>{
+			console.log('Inside Anpnymous Function');
+			this._context.navigation.openForm(this._EntityFormOptions).then(
+				function (success) {
+					console.log(success);
+				},
+				function (error) {
+					console.log(error);
+				});
+		});
 
 		this._inputCardLabel = document.createElement("p");
 		this._inputCardLabel.setAttribute("class", "card-name");
